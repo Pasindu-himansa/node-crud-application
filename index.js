@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const Product = require("./models/product.model.js");
 const productRoute = require("./route/product.route.js");
 const app = express();
@@ -15,9 +16,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://pasindu_db_admin:yGQxT3oLhQhUZsED@node-api.nswbkuf.mongodb.net/?appName=NODE-API"
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to database");
     app.listen(3000, () => {
